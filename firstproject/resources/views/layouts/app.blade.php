@@ -1,59 +1,84 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'First App') }}</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+    <title>{{ config('app.name', 'First App') }}</title>
 
-        <!-- Styles -->
-        {{-- <link href={{ base_path().'/theme/assets/css/styles.css' }} rel="stylesheet"> --}}
-        <link rel="stylesheet" href="{{ asset('/theme/assets/css/styles.css') }}">
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
-        <!-- Scripts -->
-        {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
-        <script src="{{ asset('/theme/assets/js/jquery.min.js') }}"></script>
-    </head>
-    <body class="font-sans antialiased">
-        <div id="main-wrapper">
-            @include('layouts.navbar')
+    <!-- Styles -->
+    {{--
+    <link href={{ base_path().'/theme/assets/css/styles.css' }} rel="stylesheet"> --}}
+    <link rel="stylesheet" href="{{ asset('/theme/assets/css/styles.css') }}">
 
-            <!-- Page Heading -->
-            {{-- <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header> --}}
+    <!-- Scripts -->
+    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
+    <script src="{{ asset('/theme/assets/js/jquery.min.js') }}"></script>
+</head>
 
-            <!-- Page Content -->
-            {{-- <main>
+<body class="font-sans antialiased">
+    <div id="main-wrapper">
+        @include('layouts.navbar')
 
-            </main> --}}
-            <section class="gray pt-4">
-                <div class="container-fluid">
-                    <div class="row">
-                        @include('layouts.sidebar')
-                        <div class="col-lg-9 col-md-9 col-sm-12">
-                            {{ $slot }}
+        <!-- Page Heading -->
+        {{-- <header class="bg-white shadow">
+            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                {{ $header }}
+            </div>
+        </header> --}}
+
+        <!-- Page Content -->
+        {{-- <main>
+
+        </main> --}}
+        <section class="gray pt-4">
+            <div class="container-fluid">
+                <div class="row">
+                    @include('layouts.sidebar')
+                    <div class="col-lg-9 col-md-9 col-sm-12">
+                        <div class="row justify-content-between">
+                            <div class="col-lg-12 col-md-12 col-sm-12 pb-4">
+                                <div class="dashboard_wrap d-flex align-items-center justify-content-between">
+                                    <div class="arion">
+                                        <nav class="transparent">
+                                            <ol class="breadcrumb">
+                                                <a href="/">Home</a> >
+                                                <?php $segments = ''; ?>
+                                                @foreach(Request::segments() as $segment)
+                                                <?php $segments .= '/'.$segment; ?>
+
+                                                    <a href="{{ $segments }}">{{ucwords($segment)}}</a>
+
+                                                @endforeach
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
+                        {{ $slot }}
                     </div>
                 </div>
-            </section>
-            @include('layouts.footer')
-        </div>
+            </div>
+        </section>
+        @include('layouts.footer')
+    </div>
 
-	<script src="{{ asset('/theme/assets/js/popper.min.js') }}"></script>
-	<script src="{{ asset('/theme/assets/js/bootstrap.min.js') }}"></script>
-	<script src="{{ asset('/theme/assets/js/select2.min.js') }}"></script>
-	<script src="{{ asset('/theme/assets/js/slick.js') }}"></script>
-	<script src="{{ asset('/theme/assets/js/moment.min.js') }}"></script>
-	<script src="{{ asset('/theme/assets/js/daterangepicker.js') }}"></script>
-	<script src="{{ asset('/theme/assets/js/summernote.min.js') }}"></script>
-	<script src="{{ asset('/theme/assets/js/metisMenu.min.js') }}"></script>
-	<script src="{{ asset('/theme/assets/js/custom.js') }}"></script>
-    </body>
+    <script src="{{ asset('/theme/assets/js/popper.min.js') }}"></script>
+    <script src="{{ asset('/theme/assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('/theme/assets/js/select2.min.js') }}"></script>
+    <script src="{{ asset('/theme/assets/js/slick.js') }}"></script>
+    <script src="{{ asset('/theme/assets/js/moment.min.js') }}"></script>
+    <script src="{{ asset('/theme/assets/js/daterangepicker.js') }}"></script>
+    <script src="{{ asset('/theme/assets/js/summernote.min.js') }}"></script>
+    <script src="{{ asset('/theme/assets/js/metisMenu.min.js') }}"></script>
+    <script src="{{ asset('/theme/assets/js/custom.js') }}"></script>
+</body>
+
 </html>
